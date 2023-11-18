@@ -63,31 +63,33 @@ public class MainPomBuilder implements Callable<Project> {
             .version("${project.version}")
             .build());
 
-    for (var module : context.modules()) {
-      dependencies.add(
-          Dependency.builder()
-              .groupId(context.applicationGroupId())
-              .artifactId(module + "-app")
-              .version("${project.version}")
-              .build());
-      dependencies.add(
-          Dependency.builder()
-              .groupId(context.applicationGroupId())
-              .artifactId(module + "-domain-api")
-              .version("${project.version}")
-              .build());
-      dependencies.add(
-          Dependency.builder()
-              .groupId(context.applicationGroupId())
-              .artifactId(module + "-domain-impl")
-              .version("${project.version}")
-              .build());
-      dependencies.add(
-          Dependency.builder()
-              .groupId(context.applicationGroupId())
-              .artifactId(module + "-infrastructure")
-              .version("${project.version}")
-              .build());
+    if (context.modules() != null) {
+      for (var module : context.modules()) {
+        dependencies.add(
+            Dependency.builder()
+                .groupId(context.applicationGroupId())
+                .artifactId(module + "-app")
+                .version("${project.version}")
+                .build());
+        dependencies.add(
+            Dependency.builder()
+                .groupId(context.applicationGroupId())
+                .artifactId(module + "-domain-api")
+                .version("${project.version}")
+                .build());
+        dependencies.add(
+            Dependency.builder()
+                .groupId(context.applicationGroupId())
+                .artifactId(module + "-domain-impl")
+                .version("${project.version}")
+                .build());
+        dependencies.add(
+            Dependency.builder()
+                .groupId(context.applicationGroupId())
+                .artifactId(module + "-infrastructure")
+                .version("${project.version}")
+                .build());
+      }
     }
 
     val dm = DependencyManagement.builder().dependencies(dependencies).build();
