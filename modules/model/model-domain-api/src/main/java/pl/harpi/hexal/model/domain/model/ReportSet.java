@@ -6,4 +6,4 @@ import java.util.List;
 
 @Builder
 public record ReportSet(
-    String id, Object reports, String inherited, Object configuration) {}
+    String id, List<String> reports, String inherited, Object configuration) {}

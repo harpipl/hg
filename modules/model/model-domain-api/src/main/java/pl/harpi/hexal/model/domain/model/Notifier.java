@@ -3,6 +3,7 @@ package pl.harpi.hexal.model.domain.model;
 import lombok.Builder;
 
 import java.util.List;
+import java.util.Properties;
 
 @Builder
 public record Notifier(
@@ -12,4 +13,4 @@ public record Notifier(
     Boolean sendOnSuccess,
     Boolean sendOnWarning,
     String address,
-    Object configuration) {}
+    Properties configuration) {}

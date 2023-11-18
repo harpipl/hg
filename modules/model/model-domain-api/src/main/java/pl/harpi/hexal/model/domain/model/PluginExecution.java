@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record PluginExecution(String id, String phase, Object goals, String inherited, Object configuration) {}
+public record PluginExecution(String id, String phase, List<String> goals, String inherited, Object configuration) {}
 

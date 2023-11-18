@@ -3,6 +3,7 @@ package pl.harpi.hexal.model.domain.model;
 import lombok.Builder;
 
 import java.util.List;
+import java.util.Properties;
 
 @Builder
 public record Profile(
@@ -11,7 +12,7 @@ public record Profile(
     BuildBase build,
     List<String> modules,
     DistributionManagement distributionManagement,
-    Object properties,
+    Properties properties,
     DependencyManagement dependencyManagement,
     List<Dependency> dependencies,
     List<Repository> repositories,

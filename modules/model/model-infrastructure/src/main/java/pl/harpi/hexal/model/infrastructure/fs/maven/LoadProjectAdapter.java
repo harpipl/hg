@@ -2,7 +2,6 @@ package pl.harpi.hexal.model.infrastructure.fs.maven;
 
 import java.io.FileReader;
 import java.nio.file.Path;
-
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
