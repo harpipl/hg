@@ -7,8 +7,8 @@ import java.util.List;
 @Builder
 public record ProjectContext(
     String parentVersion,
+    String applicationName,
     String applicationArtifactId,
     String applicationGroupId,
     String applicationVersion,
-    String coreVersion,
     List<String> modules) {}

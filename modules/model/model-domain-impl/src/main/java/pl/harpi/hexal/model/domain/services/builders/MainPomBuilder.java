@@ -16,9 +16,21 @@ import pl.harpi.hexal.model.domain.model.Project;
 import pl.harpi.hexal.model.domain.model.Repository;
 import pl.harpi.hexal.model.domain.services.ProjectContext;
 
-@RequiredArgsConstructor
+import static pl.harpi.hexal.model.domain.Constants.CORE_ARTIFACT_ID;
+import static pl.harpi.hexal.model.domain.Constants.CORE_GROUP_ID;
+import static pl.harpi.hexal.model.domain.Constants.CORE_VERSION;
+import static pl.harpi.hexal.model.domain.Constants.LOMBOK_MAPSTRUCT_VERSION;
+import static pl.harpi.hexal.model.domain.Constants.MAPSTRUCT_VERSION;
+import static pl.harpi.hexal.model.domain.Constants.MODEL_VERSION;
+
+@RequiredArgsConstructor(staticName = "of")
 public class MainPomBuilder implements Callable<Project> {
   private final ProjectContext context;
+
+  private static final String PROJECT_VERSION = "${project.version}";
+  private static final String GROUP_ID = "groupId";
+  private static final String ARTIFACT_ID = "artifactId";
+  private static final String VERSION = "version";
 
   @Override
   public Project call() {
@@ -31,9 +43,9 @@ public class MainPomBuilder implements Callable<Project> {
 
     val properties = new Hashtable<>();
 
-    properties.put("core.version", context.coreVersion());
-    properties.put("mapstruct.version", "1.5.5.Final");
-    properties.put("lombok-mapstruct.version", "0.2.0");
+    properties.put("core.version", CORE_VERSION);
+    properties.put("mapstruct.version", MAPSTRUCT_VERSION);
+    properties.put("lombok-mapstruct.version", LOMBOK_MAPSTRUCT_VERSION);
 
     val repositories = new ArrayList<Repository>();
     repositories.add(
@@ -49,8 +61,8 @@ public class MainPomBuilder implements Callable<Project> {
 
     dependencies.add(
         Dependency.builder()
-            .groupId("pl.harpi")
-            .artifactId("core")
+            .groupId(CORE_GROUP_ID)
+            .artifactId(CORE_ARTIFACT_ID)
             .version("${core.version}")
             .type("pom")
             .scope("import")
@@ -60,7 +72,7 @@ public class MainPomBuilder implements Callable<Project> {
         Dependency.builder()
             .groupId(context.applicationGroupId())
             .artifactId("app")
-            .version("${project.version}")
+            .version(PROJECT_VERSION)
             .build());
 
     if (context.modules() != null) {
@@ -69,25 +81,25 @@ public class MainPomBuilder implements Callable<Project> {
             Dependency.builder()
                 .groupId(context.applicationGroupId())
                 .artifactId(module + "-app")
-                .version("${project.version}")
+                .version(PROJECT_VERSION)
                 .build());
         dependencies.add(
             Dependency.builder()
                 .groupId(context.applicationGroupId())
                 .artifactId(module + "-domain-api")
-                .version("${project.version}")
+                .version(PROJECT_VERSION)
                 .build());
         dependencies.add(
             Dependency.builder()
                 .groupId(context.applicationGroupId())
                 .artifactId(module + "-domain-impl")
-                .version("${project.version}")
+                .version(PROJECT_VERSION)
                 .build());
         dependencies.add(
             Dependency.builder()
                 .groupId(context.applicationGroupId())
                 .artifactId(module + "-infrastructure")
-                .version("${project.version}")
+                .version(PROJECT_VERSION)
                 .build());
       }
     }
@@ -103,27 +115,27 @@ public class MainPomBuilder implements Callable<Project> {
             "path",
             null,
             Arrays.asList(
-                new DomNode("groupId", "org.projectlombok"),
-                new DomNode("artifactId", "lombok-mapstruct-binding"),
-                new DomNode("version", "${lombok-mapstruct.version}"))));
+                new DomNode(GROUP_ID, "org.projectlombok"),
+                new DomNode(ARTIFACT_ID, "lombok-mapstruct-binding"),
+                new DomNode(VERSION, "${lombok-mapstruct.version}"))));
 
     paths.add(
         new DomNode(
             "path",
             null,
             Arrays.asList(
-                new DomNode("groupId", "org.mapstruct"),
-                new DomNode("artifactId", "mapstruct-processor"),
-                new DomNode("version", "${mapstruct.version}"))));
+                new DomNode(GROUP_ID, "org.mapstruct"),
+                new DomNode(ARTIFACT_ID, "mapstruct-processor"),
+                new DomNode(VERSION, "${mapstruct.version}"))));
 
     paths.add(
         new DomNode(
             "path",
             null,
             Arrays.asList(
-                new DomNode("groupId", "org.projectlombok"),
-                new DomNode("artifactId", "lombok"),
-                new DomNode("version", "${lombok.version}"))));
+                new DomNode(GROUP_ID, "org.projectlombok"),
+                new DomNode(ARTIFACT_ID, "lombok"),
+                new DomNode(VERSION, "${lombok.version}"))));
 
     val children = new ArrayList<DomNode>();
 
@@ -147,6 +159,7 @@ public class MainPomBuilder implements Callable<Project> {
             .build());
 
     return Project.builder()
+        .modelVersion(MODEL_VERSION)
         .parent(parent)
         .artifactId(context.applicationArtifactId())
         .groupId(context.applicationGroupId())

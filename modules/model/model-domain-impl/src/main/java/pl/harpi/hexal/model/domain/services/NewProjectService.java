@@ -1,10 +1,11 @@
 package pl.harpi.hexal.model.domain.services;
 
+import static pl.harpi.hexal.model.domain.Constants.SPRING_BOOT_VERSION;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import pl.harpi.core.domain.UseCase;
@@ -12,11 +13,15 @@ import pl.harpi.core.domain.exception.GlobalException;
 import pl.harpi.hexal.model.domain.model.params.NewProjectParameters;
 import pl.harpi.hexal.model.domain.ports.inbound.NewProjectUseCase;
 import pl.harpi.hexal.model.domain.ports.outbound.SaveProjectPort;
+import pl.harpi.hexal.model.domain.services.builders.AppPomBuilder;
 import pl.harpi.hexal.model.domain.services.builders.MainPomBuilder;
+import pl.harpi.hexal.model.domain.services.builders.ModulesPomBuilder;
 
 @UseCase
 @RequiredArgsConstructor
 class NewProjectService implements NewProjectUseCase {
+  private static final String POM_XML = "pom.xml";
+
   private static final String WORKING_DIRECTORY = "";
 
   private final SaveProjectPort saveProjectPort;
@@ -51,18 +56,21 @@ class NewProjectService implements NewProjectUseCase {
       throw new GlobalException("IOException", e);
     }
 
-    val mainPomPath = Path.of(projectDir + File.separator + "pom.xml");
+    val mainPomPath = Path.of(projectDir + File.separator + POM_XML);
+    val appPomPath = Path.of(projectDir + File.separator + "app" + File.separator + POM_XML);
+    val modulesPomPath = Path.of(projectDir + File.separator + "modules" + File.separator + POM_XML);
 
     val projectContext =
         ProjectContext.builder()
-            .parentVersion("3.1.5")
+            .parentVersion(SPRING_BOOT_VERSION)
+            .applicationName(newProjectParameters.name())
             .applicationArtifactId(newProjectParameters.artifact())
             .applicationGroupId(newProjectParameters.group())
             .applicationVersion("1.0-SNAPSHOT")
-            .coreVersion("1.0.6")
-//            .modules(List.of("identity", "verifier"))
             .build();
 
-    saveProjectPort.saveProject(mainPomPath, new MainPomBuilder(projectContext).call());
+    saveProjectPort.saveProject(mainPomPath, MainPomBuilder.of(projectContext).call());
+    saveProjectPort.saveProject(appPomPath, AppPomBuilder.of(projectContext).call());
+    saveProjectPort.saveProject(modulesPomPath, ModulesPomBuilder.of(projectContext).call());
   }
 }
