@@ -58,11 +58,6 @@
             </dependency>
             <dependency>
                 <groupId>pl.harpi.hexal</groupId>
-                <artifactId>common-app</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>pl.harpi.hexal</groupId>
                 <artifactId>model-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
