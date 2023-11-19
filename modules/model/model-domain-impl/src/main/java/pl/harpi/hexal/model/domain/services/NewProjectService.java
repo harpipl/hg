@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import pl.harpi.core.domain.UseCase;
@@ -58,7 +59,8 @@ class NewProjectService implements NewProjectUseCase {
 
     val mainPomPath = Path.of(projectDir + File.separator + POM_XML);
     val appPomPath = Path.of(projectDir + File.separator + "app" + File.separator + POM_XML);
-    val modulesPomPath = Path.of(projectDir + File.separator + "modules" + File.separator + POM_XML);
+    val modulesPomPath =
+        Path.of(projectDir + File.separator + "modules" + File.separator + POM_XML);
 
     val projectContext =
         ProjectContext.builder()
@@ -72,5 +74,36 @@ class NewProjectService implements NewProjectUseCase {
     saveProjectPort.saveProject(mainPomPath, MainPomBuilder.of(projectContext).call());
     saveProjectPort.saveProject(appPomPath, AppPomBuilder.of(projectContext).call());
     saveProjectPort.saveProject(modulesPomPath, ModulesPomBuilder.of(projectContext).call());
+
+    new File(        projectDir
+            + File.separator
+            + "app"
+            + File.separator
+            + "src"
+            + File.separator
+            + "main"
+            + File.separator
+            + "java"
+            + File.separator
+            + newProjectParameters.group().replace(".", File.separator)
+            ).mkdirs();
+
+    ResourceHelper.copyTemplateFromResource(
+        "Application.jtpl",
+        projectDir
+            + File.separator
+            + "app"
+            + File.separator
+            + "src"
+            + File.separator
+            + "main"
+            + File.separator
+            + "java"
+            + File.separator
+            + newProjectParameters.group().replace(".", File.separator)
+            + File.separator
+            + newProjectParameters.name()
+            + "Application.java",
+        Map.of("groupId", newProjectParameters.group(), "name", newProjectParameters.name()));
   }
 }

@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import pl.harpi.hexal.model.domain.model.Build;
+import pl.harpi.hexal.model.domain.model.Dependency;
 import pl.harpi.hexal.model.domain.model.DomNode;
 import pl.harpi.hexal.model.domain.model.Parent;
 import pl.harpi.hexal.model.domain.model.Plugin;
@@ -56,6 +57,10 @@ public class AppPomBuilder implements Callable<Project> {
         .modelVersion(MODEL_VERSION)
         .parent(parent)
         .artifactId("app")
+        .dependencies(
+            List.of(
+                Dependency.builder().groupId("org.projectlombok").artifactId("lombok").build(),
+                Dependency.builder().groupId("org.springframework.boot").artifactId("spring-boot-starter-web").build()))
         .build(Build.builder().finalName(context.applicationArtifactId()).plugins(plugins).build())
         .build();
   }
