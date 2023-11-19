@@ -47,7 +47,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>pl.harpi.hexal.Application</mainClass>
+                            <mainClass>pl.harpi.hexal.HexalApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

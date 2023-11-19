@@ -60,7 +60,8 @@ public class AppPomBuilder implements Callable<Project> {
         .dependencies(
             List.of(
                 Dependency.builder().groupId("org.projectlombok").artifactId("lombok").build(),
-                Dependency.builder().groupId("org.springframework.boot").artifactId("spring-boot-starter-web").build()))
+                Dependency.builder().groupId("org.springframework.boot").artifactId("spring-boot-starter-web").build(),
+                Dependency.builder().groupId("pl.harpi").artifactId("core-domain-api").build()))
         .build(Build.builder().finalName(context.applicationArtifactId()).plugins(plugins).build())
         .build();
   }
