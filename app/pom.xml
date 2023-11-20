@@ -14,8 +14,24 @@
 
     <dependencies>
         <dependency>
+            <groupId>pl.harpi</groupId>
+            <artifactId>core-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>pl.harpi</groupId>
+            <artifactId>core-domain-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>pl.harpi.hexal</groupId>
             <artifactId>model-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>pl.harpi.hexal</groupId>
+            <artifactId>model-domain-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>pl.harpi.hexal</groupId>
+            <artifactId>model-domain-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>pl.harpi.hexal</groupId>

@@ -53,23 +53,6 @@ class NewProjectService implements NewProjectUseCase {
           .toFile()
           .mkdirs();
 
-      Path.of(
-              projectDir
-                  + File.separator
-                  + "app"
-                  + File.separator
-                  + "src"
-                  + File.separator
-                  + "main"
-                  + File.separator
-                  + "resources"
-                  + File.separator
-                  + "META-INF"
-                  + File.separator
-                  + "spring")
-          .toFile()
-          .mkdirs();
-
       Path.of(projectDir + File.separator + "modules").toFile().mkdirs();
     } catch (IOException e) {
       throw new GlobalException("IOException", e);
@@ -124,45 +107,6 @@ class NewProjectService implements NewProjectUseCase {
             + newProjectParameters.name()
             + "Application.java",
         Map.of("groupId", newProjectParameters.group(), "name", newProjectParameters.name()));
-
-    ResourceHelper.copyTemplateFromResource(
-        "AutoConfiguration.jtpl",
-        projectDir
-            + File.separator
-            + "app"
-            + File.separator
-            + "src"
-            + File.separator
-            + "main"
-            + File.separator
-            + "java"
-            + File.separator
-            + newProjectParameters.group().replace(".", File.separator)
-            + File.separator
-            + newProjectParameters.name()
-            + "AutoConfiguration.java",
-        Map.of("groupId", newProjectParameters.group(), "name", newProjectParameters.name()));
-
-    ResourceHelper.copyTemplateFromResource(
-            "AutoConfigurationImports.txt",
-            projectDir
-                    + File.separator
-                    + "app"
-                    + File.separator
-                    + "src"
-                    + File.separator
-                    + "main"
-                    + File.separator
-                    + "resources"
-                    + File.separator
-                    + "META-INF"
-                    + File.separator
-                    + "spring"
-                    + File.separator
-                    + "org.springframework.boot.autoconfigure.AutoConfiguration.imports",
-            Map.of("groupId", newProjectParameters.group(), "name", newProjectParameters.name()));
-
-
 
   }
 }
