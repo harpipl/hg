@@ -10,8 +10,8 @@
         <version>3.1.5</version>
     </parent>
 
-    <artifactId>hexal</artifactId>
-    <groupId>pl.harpi.hexal</groupId>
+    <artifactId>hg</artifactId>
+    <groupId>pl.harpi.hg</groupId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -52,47 +52,47 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>app</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>model-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>model-domain-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>model-domain-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>model-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>verifier-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>verifier-domain-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>verifier-domain-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>pl.harpi.hexal</groupId>
+                <groupId>pl.harpi.hg</groupId>
                 <artifactId>verifier-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>

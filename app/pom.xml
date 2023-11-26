@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>hexal</artifactId>
-        <groupId>pl.harpi.hexal</groupId>
+        <artifactId>hg</artifactId>
+        <groupId>pl.harpi.hg</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -22,19 +22,19 @@
             <artifactId>core-domain-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>pl.harpi.hexal</groupId>
+            <groupId>pl.harpi.hg</groupId>
             <artifactId>model-app</artifactId>
         </dependency>
         <dependency>
-            <groupId>pl.harpi.hexal</groupId>
+            <groupId>pl.harpi.hg</groupId>
             <artifactId>model-domain-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>pl.harpi.hexal</groupId>
+            <groupId>pl.harpi.hg</groupId>
             <artifactId>model-domain-impl</artifactId>
         </dependency>
         <dependency>
-            <groupId>pl.harpi.hexal</groupId>
+            <groupId>pl.harpi.hg</groupId>
             <artifactId>model-infrastructure</artifactId>
         </dependency>
         <dependency>
@@ -52,7 +52,7 @@
     </dependencies>
 
     <build>
-        <finalName>hexal</finalName>
+        <finalName>hg</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -63,7 +63,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>pl.harpi.hexal.HexalApplication</mainClass>
+                            <mainClass>pl.harpi.hg.hgApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
