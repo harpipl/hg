@@ -1,12 +1,12 @@
 package pl.harpi.hg;
 
+import java.util.concurrent.Callable;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
+import pl.harpi.hg.model.app.cmd.ModuleCmd;
 import pl.harpi.hg.model.app.cmd.NewCmd;
 
-import java.util.concurrent.Callable;
-
-@CommandLine.Command(subcommands = {NewCmd.class})
+@CommandLine.Command(subcommands = {NewCmd.class, ModuleCmd.class})
 @Component
 class RootCmd implements Callable<Integer> {
   @Override
