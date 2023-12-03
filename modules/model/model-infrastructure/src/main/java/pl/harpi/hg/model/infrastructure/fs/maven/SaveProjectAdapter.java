@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.springframework.stereotype.Component;
-import pl.harpi.core.domain.exception.GlobalException;
+import pl.harpi.lib.core.domain.exception.GlobalException;
 import pl.harpi.hg.model.domain.model.Project;
 import pl.harpi.hg.model.domain.ports.outbound.SaveProjectPort;
 

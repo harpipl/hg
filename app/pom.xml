@@ -15,11 +15,11 @@
     <dependencies>
         <dependency>
             <groupId>pl.harpi</groupId>
-            <artifactId>core-app</artifactId>
+            <artifactId>lib-core-app</artifactId>
         </dependency>
         <dependency>
             <groupId>pl.harpi</groupId>
-            <artifactId>core-domain-api</artifactId>
+            <artifactId>lib-core-domain-api</artifactId>
         </dependency>
         <dependency>
             <groupId>pl.harpi.hg</groupId>

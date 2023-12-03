@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>pl.harpi</groupId>
-            <artifactId>core-domain-api</artifactId>
+            <artifactId>lib-core-domain-api</artifactId>
         </dependency>
         <dependency>
             <groupId>pl.harpi.hg</groupId>

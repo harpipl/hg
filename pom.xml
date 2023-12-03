@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.5</version>
+        <groupId>pl.harpi</groupId>
+        <artifactId>spring-boot-parent</artifactId>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>hg</artifactId>
@@ -22,18 +22,14 @@
     </modules>
 
     <properties>
-        <core.version>1.0.7</core.version>
-
+        <core.version>1.0.1</core.version>
         <maven.model.version>3.9.5</maven.model.version>
         <picocli.version>4.7.5</picocli.version>
-
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <lombok-mapstruct.version>0.2.0</lombok-mapstruct.version>
     </properties>
 
     <repositories>
         <repository>
-            <id>github-harpipl</id>
+            <id>github</id>
             <url>https://maven.pkg.github.com/harpipl/packages</url>
         </repository>
         <repository>
@@ -46,7 +42,7 @@
         <dependencies>
             <dependency>
                 <groupId>pl.harpi</groupId>
-                <artifactId>core</artifactId>
+                <artifactId>lib-core</artifactId>
                 <version>${core.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -109,40 +105,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>${lombok-mapstruct.version}</version>
-                        </path>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${mapstruct.version}</version>
-                        </path>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                    <compilerArgs>
-                        <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
-                        <arg>-Amapstruct.defaultComponentModel=spring</arg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
