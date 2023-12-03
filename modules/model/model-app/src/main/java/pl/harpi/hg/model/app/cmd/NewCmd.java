@@ -13,16 +13,16 @@ import java.util.concurrent.Callable;
 @RequiredArgsConstructor
 public class NewCmd implements Callable<Integer> {
   @CommandLine.Option(
-      names = {"-g", "--group"},
-      description = "Group",
+      names = {"-g", "--groupId"},
+      description = "Group id",
       required = true)
-  private String group;
+  private String groupId;
 
   @CommandLine.Option(
-      names = {"-a", "--artifact"},
-      description = "Artifact",
+      names = {"-a", "--artifactId"},
+      description = "Artifact id",
       required = true)
-  private String artifact;
+  private String artifactId;
 
   @CommandLine.Option(
       names = {"-n", "--name"},
@@ -41,8 +41,8 @@ public class NewCmd implements Callable<Integer> {
   public Integer call() throws Exception {
     newProjectUseCase.createNewProject(
         NewProjectParameters.builder()
-            .group(group)
-            .artifact(artifact)
+            .group(groupId)
+            .artifact(artifactId)
             .name(name)
             .description(description)
             .build());

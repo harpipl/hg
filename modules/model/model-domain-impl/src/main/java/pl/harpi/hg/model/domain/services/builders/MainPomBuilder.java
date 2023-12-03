@@ -36,8 +36,8 @@ public class MainPomBuilder implements Callable<Project> {
   public Project call() {
     val parent =
         Parent.builder()
-            .groupId("org.springframework.boot")
-            .artifactId("spring-boot-starter-parent")
+            .groupId(context.parentGroupId())
+            .artifactId(context.parentArtifactId())
             .version(context.parentVersion())
             .build();
 
@@ -50,7 +50,7 @@ public class MainPomBuilder implements Callable<Project> {
     val repositories = new ArrayList<Repository>();
     repositories.add(
         Repository.builder()
-            .id("github-harpipl")
+            .id("github")
             .url("https://maven.pkg.github.com/harpipl/packages")
             .build());
 
@@ -161,6 +161,8 @@ public class MainPomBuilder implements Callable<Project> {
     return Project.builder()
         .modelVersion(MODEL_VERSION)
         .parent(parent)
+        .name(context.applicationName())
+        .description(context.applicationDescription())
         .artifactId(context.applicationArtifactId())
         .groupId(context.applicationGroupId())
         .version(context.applicationVersion())

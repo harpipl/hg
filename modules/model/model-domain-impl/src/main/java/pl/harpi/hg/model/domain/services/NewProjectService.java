@@ -1,6 +1,8 @@
 package pl.harpi.hg.model.domain.services;
 
-import static pl.harpi.hg.model.domain.Constants.SPRING_BOOT_VERSION;
+import static pl.harpi.hg.model.domain.Constants.PARENT_ARTIFACT_ID;
+import static pl.harpi.hg.model.domain.Constants.PARENT_GROUP_ID;
+import static pl.harpi.hg.model.domain.Constants.PARENT_VERSION;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,8 +67,11 @@ class NewProjectService implements NewProjectUseCase {
 
     val projectContext =
         ProjectContext.builder()
-            .parentVersion(SPRING_BOOT_VERSION)
+            .parentVersion(PARENT_VERSION)
+            .parentArtifactId(PARENT_ARTIFACT_ID)
+            .parentGroupId(PARENT_GROUP_ID)
             .applicationName(newProjectParameters.name())
+            .applicationDescription(newProjectParameters.description())
             .applicationArtifactId(newProjectParameters.artifact())
             .applicationGroupId(newProjectParameters.group())
             .applicationVersion("1.0-SNAPSHOT")
@@ -107,6 +112,5 @@ class NewProjectService implements NewProjectUseCase {
             + newProjectParameters.name()
             + "Application.java",
         Map.of("groupId", newProjectParameters.group(), "name", newProjectParameters.name()));
-
   }
 }
