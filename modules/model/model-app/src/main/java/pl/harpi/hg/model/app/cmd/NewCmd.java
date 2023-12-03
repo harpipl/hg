@@ -41,8 +41,8 @@ public class NewCmd implements Callable<Integer> {
   public Integer call() throws Exception {
     newProjectUseCase.createNewProject(
         NewProjectParameters.builder()
-            .group(groupId)
-            .artifact(artifactId)
+            .groupId(groupId)
+            .artifactId(artifactId)
             .name(name)
             .description(description)
             .build());

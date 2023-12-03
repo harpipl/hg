@@ -13,7 +13,4 @@ public class Constants {
   public static final String PARENT_VERSION = "1.0.0";
   public static final String PARENT_GROUP_ID = "pl.harpi";
   public static final String PARENT_ARTIFACT_ID = "spring-boot-parent";
-
-  public static final String MAPSTRUCT_VERSION = "1.5.5.Final";
-  public static final String LOMBOK_MAPSTRUCT_VERSION = "0.2.0";
 }

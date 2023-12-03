@@ -72,8 +72,8 @@ class NewProjectService implements NewProjectUseCase {
             .parentGroupId(PARENT_GROUP_ID)
             .applicationName(newProjectParameters.name())
             .applicationDescription(newProjectParameters.description())
-            .applicationArtifactId(newProjectParameters.artifact())
-            .applicationGroupId(newProjectParameters.group())
+            .applicationArtifactId(newProjectParameters.artifactId())
+            .applicationGroupId(newProjectParameters.groupId())
             .applicationVersion("1.0-SNAPSHOT")
             .build();
 
@@ -92,7 +92,7 @@ class NewProjectService implements NewProjectUseCase {
                 + File.separator
                 + "java"
                 + File.separator
-                + newProjectParameters.group().replace(".", File.separator))
+                + newProjectParameters.groupId().replace(".", File.separator))
         .mkdirs();
 
     ResourceHelper.copyTemplateFromResource(
@@ -107,10 +107,10 @@ class NewProjectService implements NewProjectUseCase {
             + File.separator
             + "java"
             + File.separator
-            + newProjectParameters.group().replace(".", File.separator)
+            + newProjectParameters.groupId().replace(".", File.separator)
             + File.separator
             + newProjectParameters.name()
             + "Application.java",
-        Map.of("groupId", newProjectParameters.group(), "name", newProjectParameters.name()));
+        Map.of("groupId", newProjectParameters.groupId(), "name", newProjectParameters.name()));
   }
 }

@@ -4,4 +4,4 @@ import lombok.Builder;
 
 @Builder
 public record NewProjectParameters(
-    String group, String artifact, String name, String description) {}
+        String groupId, String artifactId, String name, String description) {}
