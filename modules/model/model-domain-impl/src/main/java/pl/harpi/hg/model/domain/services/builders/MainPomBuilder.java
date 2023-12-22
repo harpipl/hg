@@ -24,6 +24,12 @@ public class MainPomBuilder implements Callable<Project> {
 
   private static final String PROJECT_VERSION = "${project.version}";
 
+  private static final String MODULE_DOMAIN_API = "-domain-api";
+
+  private static final String MODULE_DOMAIN_IMPL = "-domain-impl";
+
+  private static final String MODULE_INFRASTRUCTURE = "-infrastructure";
+
   @Override
   public Project call() {
     val parent =
@@ -76,19 +82,19 @@ public class MainPomBuilder implements Callable<Project> {
         dependencies.add(
             Dependency.builder()
                 .groupId(context.applicationGroupId())
-                .artifactId(module + "-domain-api")
+                .artifactId(module + MODULE_DOMAIN_API)
                 .version(PROJECT_VERSION)
                 .build());
         dependencies.add(
             Dependency.builder()
                 .groupId(context.applicationGroupId())
-                .artifactId(module + "-domain-impl")
+                .artifactId(module + MODULE_DOMAIN_IMPL)
                 .version(PROJECT_VERSION)
                 .build());
         dependencies.add(
             Dependency.builder()
                 .groupId(context.applicationGroupId())
-                .artifactId(module + "-infrastructure")
+                .artifactId(module + MODULE_INFRASTRUCTURE)
                 .version(PROJECT_VERSION)
                 .build());
       }

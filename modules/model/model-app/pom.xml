@@ -17,14 +17,6 @@
             <artifactId>model-domain-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>pl.harpi.hg</groupId>
-            <artifactId>model-domain-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
