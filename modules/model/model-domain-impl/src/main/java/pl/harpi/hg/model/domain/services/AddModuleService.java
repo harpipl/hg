@@ -21,6 +21,13 @@ import pl.harpi.hg.model.domain.ports.outbound.SaveProjectPort;
 import pl.harpi.lib.core.domain.UseCase;
 import pl.harpi.lib.core.domain.exception.GlobalException;
 
+import static pl.harpi.hg.model.domain.Constants.CORE_ARTIFACT_ID;
+import static pl.harpi.hg.model.domain.Constants.CORE_GROUP_ID;
+import static pl.harpi.hg.model.domain.Constants.MODULE_APP;
+import static pl.harpi.hg.model.domain.Constants.MODULE_DOMAIN_API;
+import static pl.harpi.hg.model.domain.Constants.MODULE_DOMAIN_IMPL;
+import static pl.harpi.hg.model.domain.Constants.MODULE_INFRASTRUCTURE;
+
 @UseCase
 @RequiredArgsConstructor
 public class AddModuleService implements AddModuleUseCase {
@@ -35,15 +42,9 @@ public class AddModuleService implements AddModuleUseCase {
 
   private static final String PROJECT_VERSION = "${project.version}";
 
-  private static final String MODULE_DOMAIN_API = "-domain-api";
-
-  private static final String MODULE_DOMAIN_IMPL = "-domain-impl";
-
-  private static final String MODULE_INFRASTRUCTURE = "-infrastructure";
-
   private List<String> getModuleNames(AddModuleParameters parameters) {
     return List.of(
-        parameters.name() + "-app",
+        parameters.name() + MODULE_APP,
         parameters.name() + MODULE_DOMAIN_API,
         parameters.name() + MODULE_DOMAIN_IMPL,
         parameters.name() + MODULE_INFRASTRUCTURE);
@@ -67,7 +68,7 @@ public class AddModuleService implements AddModuleUseCase {
             Dependency.builder().groupId("org.mapstruct").artifactId("mapstruct").build()));
 
     val libCoreDomainApiDep =
-        Dependency.builder().groupId("pl.harpi").artifactId("lib-core-domain-api").build();
+        Dependency.builder().groupId(CORE_GROUP_ID).artifactId(CORE_ARTIFACT_ID + MODULE_DOMAIN_API).build();
 
     dependencyMap.put(parameters.name() + MODULE_DOMAIN_API, List.of(libCoreDomainApiDep));
 

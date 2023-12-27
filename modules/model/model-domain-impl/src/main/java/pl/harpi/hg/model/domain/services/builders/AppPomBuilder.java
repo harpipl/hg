@@ -1,11 +1,16 @@
 package pl.harpi.hg.model.domain.services.builders;
 
+import static pl.harpi.hg.model.domain.Constants.CORE_ARTIFACT_ID;
+import static pl.harpi.hg.model.domain.Constants.CORE_GROUP_ID;
+import static pl.harpi.hg.model.domain.Constants.MODEL_VERSION;
+import static pl.harpi.hg.model.domain.Constants.MODULE_APP;
+import static pl.harpi.hg.model.domain.Constants.MODULE_DOMAIN_API;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import pl.harpi.hg.model.domain.Constants;
 import pl.harpi.hg.model.domain.model.Build;
 import pl.harpi.hg.model.domain.model.Dependency;
 import pl.harpi.hg.model.domain.model.DomNode;
@@ -14,9 +19,6 @@ import pl.harpi.hg.model.domain.model.Plugin;
 import pl.harpi.hg.model.domain.model.PluginExecution;
 import pl.harpi.hg.model.domain.model.Project;
 import pl.harpi.hg.model.domain.services.ProjectContext;
-
-import static pl.harpi.hg.model.domain.Constants.CORE_GROUP_ID;
-import static pl.harpi.hg.model.domain.Constants.MODEL_VERSION;
 
 @RequiredArgsConstructor(staticName = "of")
 public class AppPomBuilder implements Callable<Project> {
@@ -65,10 +67,10 @@ public class AppPomBuilder implements Callable<Project> {
                     .groupId("org.springframework.boot")
                     .artifactId("spring-boot-starter-web")
                     .build(),
-                Dependency.builder().groupId(CORE_GROUP_ID).artifactId("lib-core-app").build(),
+                Dependency.builder().groupId(CORE_GROUP_ID).artifactId(CORE_ARTIFACT_ID + MODULE_APP).build(),
                 Dependency.builder()
                     .groupId(CORE_GROUP_ID)
-                    .artifactId("lib-core-domain-api")
+                    .artifactId(CORE_ARTIFACT_ID + MODULE_DOMAIN_API)
                     .build()))
         .build(Build.builder().finalName(context.applicationArtifactId()).plugins(plugins).build())
         .build();

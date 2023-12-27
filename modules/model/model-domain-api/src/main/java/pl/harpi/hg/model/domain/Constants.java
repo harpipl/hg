@@ -13,4 +13,9 @@ public class Constants {
   public static final String PARENT_VERSION = "1.0.0";
   public static final String PARENT_GROUP_ID = "pl.harpi";
   public static final String PARENT_ARTIFACT_ID = "spring-boot-parent";
+
+  public static final String MODULE_APP = "-app";
+  public static final String MODULE_DOMAIN_API = "-domain-api";
+  public static final String MODULE_DOMAIN_IMPL = "-domain-impl";
+  public static final String MODULE_INFRASTRUCTURE = "-infrastructure";
 }
