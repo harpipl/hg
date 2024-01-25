@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <core.version>1.0.1</core.version>
+        <core.version>1.0.2</core.version>
         <maven.model.version>3.9.5</maven.model.version>
         <picocli.version>4.7.5</picocli.version>
     </properties>
